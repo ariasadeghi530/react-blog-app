@@ -41,7 +41,7 @@ router.post('/users/register', (req, res) => {
   })
 })
 
-router.get('/users/posts',  passport.authenticate('jwt'), (req, res) => {
+router.get('/users/posts', passport.authenticate('jwt'), (req, res) => {
   
 })
 
