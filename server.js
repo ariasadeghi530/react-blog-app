@@ -29,5 +29,5 @@ passport.use(new JWTStrategy({
 app.use(require('./routes'));
 
 require('./config')
-  .then(() => app.listen(process.env.PORT || 3001))
+  .then(() => app.listen(3001))
   .catch(e => console.error(e));

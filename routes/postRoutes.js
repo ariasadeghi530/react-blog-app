@@ -14,6 +14,12 @@ router.get('/posts', passport.authenticate('jwt'), (req, res) => {
     .catch(e => console.log(e));
 });
 
+router.post('/posts' , passport.authenticate('jwt'), (req, res) => {
+  Post.create(req.body)
+  .then((post) => res.json(post))
+  .catch(e => console.error(e))
+})
+
 
 
 

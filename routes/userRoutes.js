@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const passport = require('passport');
-const { User } = require('../models');
+const { User, Post } = require('../models');
 
 const jwt = require('jsonwebtoken');
 
@@ -42,7 +42,10 @@ router.post('/users/register', (req, res) => {
 })
 
 router.get('/users/posts', passport.authenticate('jwt'), (req, res) => {
-  
+  console.log(req, res);
+  Post.findById(user._id)
+  .then((posts) => res.json(posts))
+  .catch(e => console.error(e));
 })
 
 
