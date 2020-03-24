@@ -15,8 +15,13 @@ router.get('/posts', passport.authenticate('jwt'), (req, res) => {
 });
 
 router.post('/posts' , passport.authenticate('jwt'), (req, res) => {
-  Post.create(req.body)
-  .then((post) => res.json(post))
+  Post.create({title: req.body.title, post: req.body.post, owner: [req.user._id]})
+  .then((post) => {
+    res.json(post);
+    User.findByIdAndUpdate(req.user._id, {$push: {posts: post[0]}})
+    .then(() => res.sendStatus(200))
+    .catch(e => console.error(e))
+  })
   .catch(e => console.error(e))
 })
 

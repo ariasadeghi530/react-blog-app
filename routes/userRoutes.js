@@ -41,9 +41,14 @@ router.post('/users/register', (req, res) => {
   })
 })
 
+router.get('/users', passport.authenticate('jwt'), (req, res) => {
+  User.find({_id: req.user._id})
+  .then((user) => res.json(user))
+  .catch(e => console.error(e));
+})
+
 router.get('/users/posts', passport.authenticate('jwt'), (req, res) => {
-  console.log(req, res);
-  Post.findById(user._id)
+  Post.find({owner: req.user._id})
   .then((posts) => res.json(posts))
   .catch(e => console.error(e));
 })

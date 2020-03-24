@@ -1,18 +1,12 @@
 const { model, Schema } = require('mongoose');
 
 const PostSchema = new Schema({
-  Title: {
-    type: String,
-    required: true
-  },
-  post: {
-    type: String,
-    required: true
-  },
-  owner: {
+  title: String,
+  post: String,
+  owner: [{
     type: Schema.Types.ObjectId,
     ref: 'user'
-  }
+  }]
 });
 
 module.exports = model('post', PostSchema);
