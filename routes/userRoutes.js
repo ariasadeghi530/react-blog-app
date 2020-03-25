@@ -6,18 +6,6 @@ const jwt = require('jsonwebtoken');
 
 require('dotenv').config();
 
-// Get one user
-// router.get('/users/:id', (req, res) => {
-//   User.findById(req.params.id)
-//   .populate('items')
-//   .then(user => res.json(user))
-//   .catch(e => console.log(e))
-// });
-
-// router.post('/users', (req, res) => {
-//   .then(() => res.sendStatus(200))
-//   .catch(e => console.log(e));
-// });
 
 router.post('/users/login', (req, res) => {
   User.authenticate()(req.body.username, req.body.password, (err, user) => {
